@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($row) {
             // ✅ verify password (use hashing in production)
-            if (password_verify($password, $row["password"])|| $password === $row["password"] ) {
+            if (password_verify($password, $row["password"])) {
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["user_id"] = $row["id"];
                 $_SESSION["type"] = $row["type"];
@@ -36,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($row["type"] === "admin") {
                     header("Location: admin/dashboard.php");
                 } elseif ($row["type"] === "employee") {
-                    header("Location: employee_dashboard.php");
+                    header("Location:employee/employee_dashboard.php");
+                }
+                 elseif ($row["type"] === "user") {
+                    header("Location:customer/customer_dashboard.php");
                 } else {
                     header("Location: home.php");
                 }

@@ -225,7 +225,6 @@ if ($select_products->rowCount() > 0) {
 }
 ?>
 
-
         </div>
 
         <div class="more-btn">

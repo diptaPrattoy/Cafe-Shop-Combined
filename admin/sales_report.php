@@ -33,14 +33,6 @@ $monthly_sales_stmt = $conn->query("SELECT DATE_FORMAT(placed_on,'%Y-%m') as mon
                                     ORDER BY month ASC");
 $monthly_sales_data = $monthly_sales_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Top Selling Products
-$products_stmt = $conn->query("SELECT p.name, SUM(SUBSTRING_INDEX(SUBSTRING_INDEX(o.total_products, p.name, -1), '-', 1) + 0) as sold_qty
-                               FROM products p
-                               JOIN orders o
-                               ON o.total_products LIKE CONCAT('%',p.name,'%')
-                               GROUP BY p.name
-                               ORDER BY sold_qty DESC LIMIT 10");
-$top_products = $products_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Orders Table
 $orders_stmt = $conn->query("SELECT * FROM orders ORDER BY placed_on DESC");
@@ -131,24 +123,6 @@ $orders = $orders_stmt->fetchAll(PDO::FETCH_ASSOC);
             <canvas id="monthlySalesChart"></canvas>
         </div>
 
-        <!-- Top Products -->
-        <h3>Top Selling Products</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity Sold</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($top_products as $product): ?>
-                <tr>
-                    <td><?= htmlspecialchars($product['name']) ?></td>
-                    <td><?= $product['sold_qty'] ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
 
         <!-- Orders Table -->
         <h3>Recent Orders</h3>

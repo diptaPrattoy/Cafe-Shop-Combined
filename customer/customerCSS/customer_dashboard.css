@@ -1,0 +1,26 @@
+/* Customer Dashboard Styles */
+
+/* Logo and Branding */
+.logo-image {
+    width: 80px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    margin-top: 1.2rem;
+}
+
+/* Header Styles */
+.customer-panel-title {
+    text-align: center;
+}
+
+.panel-accent {
+    color: blue;
+}
+
+/* Dashboard Heading */
+.dashboard-heading {
+    text-align: center;
+    margin-top: 3rem;
+}

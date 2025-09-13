@@ -136,6 +136,8 @@ INSERT INTO `products` (`id`, `name`, `category`, `price`, `image`, `popularity`
 (25, 'Quad shots', 'coffee', 20, 'quad-shots-1659544996.webp', NULL, NULL, NULL),
 (26, 'Mexican coffee', 'coffee', 20, 'mexican-coffee-1659544996.webp', NULL, NULL, NULL);
 
+(100, 'Espresso', 'coffee', 100, 'delicious-quality-coffee-cup.png', 15, NULL, NULL);
+
 -- --------------------------------------------------------
 -- Ratings
 -- --------------------------------------------------------

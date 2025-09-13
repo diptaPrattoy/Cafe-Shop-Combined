@@ -1,0 +1,67 @@
+
+/* Navigation Header */
+.navigation-header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background-color: #0056b3;
+}
+
+.navigation-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.profile-card {
+    max-width: 400px;
+    margin: 2em auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 2em;
+    text-align: center;
+}
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #eee;
+    margin-bottom: 1em;
+}
+.profile-details {
+    text-align: left;
+    margin: 1em 0;
+}
+.edit-btn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+.edit-btn:hover { background: #0056b3; }
+.edit-form {
+    display: none;
+    margin-top: 2em;
+    text-align: left;
+}
+.success { color: green; margin-bottom: 1em; }
+.error { color: red; margin-bottom: 1em; }
