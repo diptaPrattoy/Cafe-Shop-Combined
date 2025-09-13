@@ -1,38 +1,21 @@
 <?php
-
 session_start();
 include 'components/connect.php';
-// include 'components/connection.php';
-// require __DIR__ . "/components/connect.php";
 
-//new
-if(isset($_SESSION['user_id'])){
-   $user_id = $_SESSION['user_id'];
-}else{
-   $user_id = '';
-};
-//
 $errors = [];
 $username = "";
 $password = "";
-$email ="";
-$password = $Cpassword = "";
-// $success = false;
-// $errors = $_SESSION['errors'] ?? [];
-// $username = $_SESSION['old_username'] ?? "";
-// $email = $_SESSION['old_email'] ?? "";
-// unset($_SESSION['errors'], $_SESSION['old_username'], $_SESSION['old_email']);
-// $password = $Cpassword = "";
+$email = "";
+$Cpassword = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // ----------- VALIDATIONS ------------
-
-    // username
+    // ---------------- VALIDATION ----------------
+    // Username
     if (empty($_POST["username"])) {
         $errors["username"] = "Username is required";
     } else {
-        $username = sanitizeInput($_POST["username"]);
+        $username = trim($_POST["username"]);
         if (strlen($username) < 5) {
             $errors["username"] = "Username must be at least 5 characters long";
         } elseif (!preg_match("/^[a-zA-Z0-9._-]+$/", $username)) {
@@ -40,19 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // password
+    // Password
     if (empty($_POST["password"])) {
         $errors["password"] = "Password is required";
     } else {
-        $password = sanitizeInput($_POST["password"]);
+        $password = $_POST["password"];
         if (strlen($password) < 8) {
             $errors["password"] = "Password must be at least 8 characters long";
         } elseif (!preg_match("/[@#$%]/", $password)) {
-            $errors["password"] = "Password must contain at least one special character";
+            $errors["password"] = "Password must contain at least one special character (@, #, $, %)";
         }
     }
 
-    // confirm password
+    // Confirm password
     if (empty($_POST["Cpassword"])) {
         $errors["Cpassword"] = "Confirm your password";
     } else {
@@ -62,131 +45,117 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // email
+    // Email
     if (empty($_POST["email"])) {
         $errors["email"] = "Email is required";
     } else {
-        $email = sanitizeInput($_POST["email"]);
+        $email = trim($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors["email"] = "Invalid email format";
         }
     }
 
-    // ----------   IF NO ERRORS, INSERT INTO DB ------------
+    // ---------------- INSERT INTO DB IF NO ERRORS ----------------
     if (empty($errors)) {
-        $success = true;
+        // Check if username or email already exists
+        $stmt = $conn->prepare("SELECT id FROM all_users WHERE username = ? OR email = ?");
+        $stmt->execute([$username, $email]);
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // hash password before storing
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if ($existing) {
+            $errors["username"] = "Username or email already exists";
+        } else {
+            // Hash password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$stmt = $conn->prepare("INSERT INTO all_users(username, password, email, type) VALUES (?, ?, ?, 'user')");
-$inserted = $stmt->execute([$username, $hashedPassword, $email]);
+            $stmt = $conn->prepare("INSERT INTO all_users(username, password, email, type) VALUES (?, ?, ?, 'user')");
+            $inserted = $stmt->execute([$username, $hashedPassword, $email]);
 
-if ($inserted) {
-    $last_id = $conn->lastInsertId();
-    $select_user = $conn->prepare("SELECT * FROM all_users WHERE id = ?");
-    $select_user->execute([$last_id]);
-    $row = $select_user->fetch(PDO::FETCH_ASSOC);
+            if ($inserted) {
+                $last_id = $conn->lastInsertId();
+                $select_user = $conn->prepare("SELECT * FROM all_users WHERE id = ?");
+                $select_user->execute([$last_id]);
+                $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
-    $_SESSION["username"] = $row["username"];
-    $_SESSION["user_id"] = $row["id"];
-    $_SESSION["type"] = $row["type"];
+                $_SESSION["username"] = $row["username"];
+                $_SESSION["user_id"] = $row["id"];
+                $_SESSION["type"] = $row["type"];
 
-    header("Location: home.php");
-    exit();
-} else {
-    echo "Database Error: Could not insert user.";
-}
-
-    } else {
-        // store errors & old input
-        // $_SESSION['errors'] = $errors;
-        // $_SESSION['old_username'] = $username;
-        // $_SESSION['old_email'] = $email;
-        header("Location: signup.php");
-        exit();
+                header("Location: customer/customer_dashboard.php");
+                exit();
+            } else {
+                $errors["signup"] = "Database error: Could not register user";
+            }
+        }
     }
 }
 
-function sanitizeInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 ?>
 
-
-
-
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up - Cozy Cafe</title>
     <link rel="stylesheet" href="style2.css">
 </head>
 
 <body>
-
     <div id="main">
-
-        <!-- <legend>Log In</legend> -->
         <div id="left_div">
-
-            <img src="./images/signUp.jpg
-        " alt="">
+            <img src="./images/signUp.jpg" alt="Sign Up">
         </div>
         <div id="right_div">
-
-            <form action="signup.php" method="POST">
-                <div id="logo"> <img id="cafeicon" src="./icon/cafe.png" alt="">
+            <form action="" method="POST">
+                <div id="logo">
+                    <img id="cafeicon" src="./icon/cafe.png" alt="">
                     <p id="yourcafe"><i>Cozy Cafe</i></p>
                 </div>
                 <h1>Register Here!</h1>
 
+                <?php if(isset($errors["signup"])): ?>
+                <span class="error"><?php echo $errors["signup"]; ?></span><br>
+                <?php endif; ?>
+
                 <div id="username">
-                    <label for="username" name="username" id="username">Username</label>
-                    <input type="text" name="username" value="<?php echo $username;?>">
-                    <?php if (isset($errors["username"])): ?>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" value="<?php echo htmlspecialchars($username); ?>">
+                    <?php if(isset($errors["username"])): ?>
                     <span class="error"><?php echo $errors["username"]; ?></span>
                     <?php endif; ?>
-
                 </div>
+
                 <div id="password">
-                    <label for="password" name="password" id="password">Password</label>
+                    <label for="password">Password</label>
                     <input type="password" name="password">
-                    <?php if (isset($errors["password"])): ?>
+                    <?php if(isset($errors["password"])): ?>
                     <span class="error"><?php echo $errors["password"]; ?></span>
                     <?php endif; ?>
-
                 </div>
+
                 <div id="Cpassword">
-                    <label for="Cpassword" name="Cpassword" id="Cpassword">Confirm Password</label>
+                    <label for="Cpassword">Confirm Password</label>
                     <input type="password" name="Cpassword">
-                    <?php if (isset($errors["Cpassword"])): ?>
+                    <?php if(isset($errors["Cpassword"])): ?>
                     <span class="error"><?php echo $errors["Cpassword"]; ?></span>
                     <?php endif; ?>
                 </div>
+
                 <div id="email">
-                    <label for="email" name="email" id="email">Email</label>
-                    <input type="email" name="email" value="<?php echo $email;?>">
-                    <?php if (isset($errors["email"])): ?>
-                    <span class=" error"><?php echo $errors["email"]; ?></span>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>">
+                    <?php if(isset($errors["email"])): ?>
+                    <span class="error"><?php echo $errors["email"]; ?></span>
                     <?php endif; ?>
                 </div>
-                <input type="submit" id="submit" name="submit" value="Register">
 
+                <input type="submit" id="submit" name="submit" value="Register">
+                <p id="registerLink">Already have an account? <a href="login.php">Log In</a></p>
             </form>
         </div>
-
     </div>
-
-
 </body>
 
 </html>

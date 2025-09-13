@@ -86,7 +86,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </li>
 
                 <li>
-                    <a href="placed_orders.php">
+                    <a href="orders.php">
                         <span class="icon">
                             <ion-icon name="receipt-outline"></ion-icon>
                         </span>
@@ -114,14 +114,23 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="messages.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
                         <span class="title">messages</span>
                     </a>
+                </li> -->
+                <li>
+                    <a href="sales_report.php">
+                        <span class="icon">
+                            <ion-icon name="cash-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sales</span>
+                    </a>
                 </li>
+
 
                 <li>
                     <a href="admin_logout.php" onclick="return confirm('logout from this website?');"
@@ -315,7 +324,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </div>
 
 
-                <div class="cardBox">
+                <!-- <div class="cardBox">
 
                     <div class="card">
                         <div>
@@ -360,7 +369,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                             <ion-icon name="cash-outline"></ion-icon>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+
+
         </div>
     </div>
     </div>
