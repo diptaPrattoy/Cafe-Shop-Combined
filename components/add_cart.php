@@ -3,7 +3,7 @@
 if(isset($_POST['add_to_cart'])){
 
    if($user_id == ''){
-      header('location:login.php');
+      header('location:../login.php');
    }else{
 
       $pid = $_POST['pid'];
@@ -26,7 +26,7 @@ if(isset($_POST['add_to_cart'])){
          $insert_cart = $conn->prepare("INSERT INTO `cart`(user_id, pid, name, price, quantity, image) VALUES(?,?,?,?,?,?)");
          $insert_cart->execute([$user_id, $pid, $name, $price, $qty, $image]);
          $message[] = 'added to cart!';
-         
+
       }
 
    }

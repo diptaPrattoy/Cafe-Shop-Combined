@@ -1,6 +1,11 @@
 <?php
-session_start();
 
+session_start();
+include 'components/connect.php';
+// include 'components/connection.php';
+// require __DIR__ . "/components/connect.php";
+
+<<<<<<< HEAD
 $servername = "localhost";
 $dbusername = "root";   // DB username
 $dbpassword = "";       // DB password
@@ -17,7 +22,26 @@ $username = $_SESSION['old_username'] ?? "";
 $email = $_SESSION['old_email'] ?? "";
 $role = $_SESSION['old_role'] ?? "";
 unset($_SESSION['errors'], $_SESSION['old_username'], $_SESSION['old_email'], $_SESSION['old_role']);
+=======
+//new
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
+}else{
+   $user_id = '';
+};
+//
+$errors = [];
+$username = "";
+$password = "";
+$email ="";
+>>>>>>> 1b6bd1e30e3f5b1f6d285e08debe2589a4e7e072
 $password = $Cpassword = "";
+// $success = false;
+// $errors = $_SESSION['errors'] ?? [];
+// $username = $_SESSION['old_username'] ?? "";
+// $email = $_SESSION['old_email'] ?? "";
+// unset($_SESSION['errors'], $_SESSION['old_username'], $_SESSION['old_email']);
+// $password = $Cpassword = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -84,24 +108,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // hash password before storing
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+<<<<<<< HEAD
         $stmt = $conn->prepare("INSERT INTO all_users(username, password, email, type) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $username, $hashedPassword, $email, $role);
+=======
+$stmt = $conn->prepare("INSERT INTO all_users(username, password, email, type) VALUES (?, ?, ?, 'user')");
+$inserted = $stmt->execute([$username, $hashedPassword, $email]);
+>>>>>>> 1b6bd1e30e3f5b1f6d285e08debe2589a4e7e072
 
-        if ($stmt->execute()) {
-            $_SESSION["username"] = $username;
-            header("Location: home.php");
-            exit();
-        } else {
-            echo "Database Error: " . $stmt->error;
-        }
+if ($inserted) {
+    $last_id = $conn->lastInsertId();
+    $select_user = $conn->prepare("SELECT * FROM all_users WHERE id = ?");
+    $select_user->execute([$last_id]);
+    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
-        $stmt->close();
+    $_SESSION["username"] = $row["username"];
+    $_SESSION["user_id"] = $row["id"];
+    $_SESSION["type"] = $row["type"];
+
+    header("Location: home.php");
+    exit();
+} else {
+    echo "Database Error: Could not insert user.";
+}
+
     } else {
         // store errors & old input
+<<<<<<< HEAD
         $_SESSION['errors'] = $errors;
         $_SESSION['old_username'] = $username;
         $_SESSION['old_email'] = $email;
         $_SESSION['old_role'] = $role;
+=======
+        // $_SESSION['errors'] = $errors;
+        // $_SESSION['old_username'] = $username;
+        // $_SESSION['old_email'] = $email;
+>>>>>>> 1b6bd1e30e3f5b1f6d285e08debe2589a4e7e072
         header("Location: signup.php");
         exit();
     }

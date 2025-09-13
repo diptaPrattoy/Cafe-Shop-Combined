@@ -1,6 +1,6 @@
 <?php
 session_start();
-require __DIR__ . "/components/connection.php";
+include 'components/connect.php'; // this should contain your PDO connection ($conn)
 
 $errors = [];
 $username = "";
@@ -20,16 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        $stmt = $conn->prepare("SELECT id, username, password, type FROM all_users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        // ✅ PDO query
+        $stmt = $conn->prepare("SELECT id, username, password, type FROM all_users WHERE username = :username");
+        $stmt->execute([':username' => $username]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+<<<<<<< HEAD
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
 
             // ✅ verify hashed password
             if (password_verify($password, $row["password"])) {
+=======
+        if ($row) {
+            // ✅ verify password (use hashing in production)
+            if (password_verify($password, $row["password"])|| $password === $row["password"] ) {
+>>>>>>> 1b6bd1e30e3f5b1f6d285e08debe2589a4e7e072
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["user_id"] = $row["id"];
                 $_SESSION["type"] = $row["type"];
@@ -51,12 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $errors["login"] = "Invalid username or password";
         }
-
-        $stmt->close();
     }
 }
-
-$conn->close();
 ?>
 
 

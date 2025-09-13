@@ -46,13 +46,14 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
+
+
     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
-                        <img style="width: 80px;" src="../images/08052021-05_generated-removebg-preview.png"
-                            alt="Cozy Cafe">
+                        <img style="width:60px;height:auto" src="../icon/cafe.png" alt="Cozy Cafe">
                         <P style="font-size: 1.8rem; margin-top: 1.2rem;"><span class="title">Cozy Cafe</span></P>
 
                     </a>
@@ -67,7 +68,14 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="admin_accounts.php">
+                        <span class="icon">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                        </span>
+                        <span class="title">admins</span>
+                    </a>
+                </li>
                 <li>
                     <a href="products.php">
                         <span class="icon">
@@ -78,7 +86,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </li>
 
                 <li>
-                    <a href="placed_orders.php">
+                    <a href="orders.php">
                         <span class="icon">
                             <ion-icon name="receipt-outline"></ion-icon>
                         </span>
@@ -86,14 +94,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                     </a>
                 </li>
 
-                <li>
-                    <a href="admin_accounts.php">
-                        <span class="icon">
-                            <ion-icon name="accessibility-outline"></ion-icon>
-                        </span>
-                        <span class="title">admins</span>
-                    </a>
-                </li>
+
 
                 <li>
                     <a href="employee_accounts.php">
@@ -113,17 +114,30 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="messages.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
                         <span class="title">messages</span>
                     </a>
+                </li> -->
+                <li>
+                    <a href="sales_report.php">
+                        <span class="icon">
+                            <ion-icon name="cash-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sales</span>
+                    </a>
                 </li>
 
+
                 <li>
+<<<<<<< HEAD
                     <a href="../signout.php" onclick="return confirm('logout from this website?');"
+=======
+                    <a href="admin_logout.php" onclick="return confirm('logout from this website?');"
+>>>>>>> 1b6bd1e30e3f5b1f6d285e08debe2589a4e7e072
                         class="delete-btn"><span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -139,7 +153,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                 </div>
 
                 <a href="dashboard.php" class="logo">
-                    <h1 style="text-align: center;">Admin<span style="color: blue;">Panel</span></h1>
+                    <h1 style="text-align: center;">Admin Panel</h1>
                 </a>
 
                 <div class="">
@@ -207,7 +221,8 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         $numbers_of_orders = $select_orders->rowCount();
                         ?>
                         <div>
-                            <div class="numbers"><span>$</span><?= $total_completes + $total_pendings; ?><span>/-</span>
+                            <div class="numbers">
+                                <span>$</span><?= $total_completes + $total_pendings; ?><span>/-</span>
                             </div>
                             <div class="cardName">total orders</div>
                         </div>
@@ -227,7 +242,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         ?>
                         <div>
                             <div class="numbers"><?= $numbers_of_products; ?></div>
-                            <div class="cardName">products added</div>
+                            <div class="cardName">No of products added</div>
                         </div>
 
                         <div class="iconBx">
@@ -239,12 +254,12 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 
                     <div class="card">
                         <?php
-                        $select_users = $conn->prepare("SELECT * FROM `all_users`");
+                        $select_users = $conn->prepare("SELECT * FROM `all_users` where type='user'");
                         $select_users->execute();
                         $numbers_of_users = $select_users->rowCount();
                         ?>
                         <div>
-                            <div class="numbers"><?= $numbers_of_products; ?></div>
+                            <div class="numbers"><?= $numbers_of_users; ?></div>
                             <div class="cardName">users accounts</div>
                         </div>
 
@@ -282,7 +297,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                         $numbers_of_employees = $select_employees->rowCount();
                         ?>
                         <div>
-                            <div class="numbers"><?= $numbers_of_admins; ?></div>
+                            <div class="numbers"><?= $numbers_of_employees; ?></div>
                             <div class="cardName">employees accounts</div>
                         </div>
 
@@ -312,14 +327,12 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                     </div>
                 </div>
 
-                <h1 class="heading" style="text-align: center;">----------------------------------------</h1>
-                <h1 class="heading" style="text-align: center;">-----------</h1>
 
-                <div class="cardBox">
+                <!-- <div class="cardBox">
 
                     <div class="card">
                         <div>
-                            <div class="numbers">1,504</div>
+                            <div class="numbers">2,089</div>
                             <div class="cardName">Daily Views</div>
                         </div>
 
@@ -330,7 +343,7 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 
                     <div class="card">
                         <div>
-                            <div class="numbers">80</div>
+                            <div class="numbers">60</div>
                             <div class="cardName">Sales</div>
                         </div>
 
@@ -360,7 +373,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                             <ion-icon name="cash-outline"></ion-icon>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+
+
         </div>
     </div>
     </div>

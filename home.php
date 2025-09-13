@@ -1,6 +1,7 @@
 <?php
-session_start();
 include 'components/connect.php';
+session_start();
+
 
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
@@ -44,44 +45,45 @@ include 'components/add_cart.php';
                 <div class="swiper-slide slide">
                     <div class="content">
                         <span>order online</span>
-                        <h3>Turmeric Spiced Coffee</h3>
+                        <h3>Cappacino</h3>
                         <a href="menu.html" class="btn">see menus</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-1.1.png" alt="">
+                        <!-- <img src="images/home-img-1.1.png" alt=""> -->
+                        <img src="images/h1.png" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
                         <span>order online</span>
-                        <h3>delicious pizza</h3>
+                        <h3>Macchiato</h3>
                         <a href="menu.html" class="btn">see menus</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-1.png" alt="">
+                        <img src="images/h2.png" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
                         <span>order online</span>
-                        <h3>chezzy hamburger</h3>
+                        <h3>Cold Brew</h3>
                         <a href="menu.html" class="btn">see menus</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-2.png" alt="">
+                        <img src="images/h3.png" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
                         <span>order online</span>
-                        <h3>rosted chicken</h3>
+                        <h3>Cortado</h3>
                         <a href="menu.html" class="btn">see menus</a>
                     </div>
                     <div class="image">
-                        <img src="images/home-img-3.png" alt="">
+                        <img src="images/h4.png" alt="">
                     </div>
                 </div>
 
@@ -101,25 +103,6 @@ include 'components/add_cart.php';
 
     </section>
 
-    <!-- booking Area -->
-    <!--
-    <section class="booking">
-        <h1 class="title"> COFFEE BUILD YOUR BASE</h1>
-
-
-        <div class="bookinput">
-            <input type="text" value=" 1 person">
-            <label for="for">
-                <h3>FOR</h3>
-            </label>
-            <input type="date">
-            <label for="at">
-                <h3 class="p-2">AT</h3>
-            </label>
-            <input type="time" value="7.00pm">
-            <input type="submit" class="btn" value="BOOK A TABLE">
-        </div>
-    </section> -->
 
     <!-- category Area -->
 
@@ -376,35 +359,35 @@ if ($select_products->rowCount() > 0) {
             <div class="box">
                 <img src="images/step-1.png" alt="">
                 <h3>choose order</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
+                <p></p>
             </div>
 
             <div class="box">
                 <img src="images/step-2.png" alt="">
                 <h3>fast delivery</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
+                <p></p>
             </div>
 
             <div class="box">
                 <img src="images/step-3.png" alt="">
                 <h3>enjoy food</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt, dolorem.</p>
+                <p></p>
             </div>
 
         </div>
 
     </section>
     <!-- For News Letter -->
-    <section class="subscribe">
+    <!-- <section class="subscribe">
         <h1 class="title">For News Letter</h1>
         <p>Subscribe For Latest Updates</p>
         <input type="email" placeholder="Enter Your Email" class="email">
         <input type="submit" value="subscribe" class="btn">
-    </section>
+    </section> -->
     <!-- Map  -->
 
 
-
+    <!--
     <section class="contact">
 
         <div class="row">
@@ -427,13 +410,13 @@ if ($select_products->rowCount() > 0) {
 
         </div>
 
-    </section>
+    </section> -->
 
 
     <!-- steps section ends -->
 
-
     <?php include 'components/footer.php'; ?>
+
 
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>

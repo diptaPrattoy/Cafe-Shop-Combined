@@ -32,7 +32,8 @@ body {
   position: fixed;
   width: 300px;
   height: 100%;
-  background: var(--blue);
+  /* background: var(--blue); */
+  background: chocolate;
   border-left: 10px solid var(--blue);
   transition: 0.5s;
   overflow: hidden;
@@ -53,8 +54,8 @@ body {
   position: relative;
   width: 100%;
   list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  /* border-top-left-radius: 30px; */
+  /* border-bottom-left-radius: 30px; */
 }
 
 .navigation ul li:hover,
@@ -114,7 +115,7 @@ body {
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   box-shadow: 35px 35px 0 10px var(--white);
   pointer-events: none;
 }
@@ -128,7 +129,7 @@ body {
   width: 50px;
   height: 50px;
   background-color: transparent;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   box-shadow: 35px -35px 0 10px var(--white);
   pointer-events: none;
 }
@@ -138,8 +139,9 @@ body {
   position: absolute;
   width: calc(100% - 300px);
   left: 300px;
+  /* left: 00px; */
   min-height: 100vh;
-  background: var(--white);
+  background: #dadada;
   transition: 0.5s;
 }
 
@@ -223,6 +225,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 12px;
+  background-color: #dadada;
 }
 
 .cardBox .card {
@@ -267,7 +270,7 @@ a:active {
 }
 
 .cardBox .card:hover {
-  background: var(--blue);
+  background: coral;
 }
 
 .cardBox .card:hover .numbers,
@@ -442,79 +445,4 @@ a:active {
 
 .recentCustomers table tr:hover td h4 span {
   color: var(--white);
-}
-
-/* ====================== Responsive Design ========================== */
-@media (max-width: 991px) {
-  .navigation {
-    left: -300px;
-  }
-
-  .navigation.active {
-    width: 300px;
-    left: 0;
-  }
-
-  .main {
-    width: 100%;
-    left: 0;
-  }
-
-  .main.active {
-    left: 300px;
-  }
-
-  .cardBox {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .details {
-    grid-template-columns: 1fr;
-  }
-
-  .recentOrders {
-    overflow-x: auto;
-  }
-
-  .status.inProgress {
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 480px) {
-  .cardBox {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .cardHeader h2 {
-    font-size: 20px;
-  }
-
-  .user {
-    min-width: 40px;
-  }
-
-  .navigation {
-    width: 100%;
-    left: -100%;
-    z-index: 1000;
-  }
-
-  .navigation.active {
-    width: 100%;
-    left: 0;
-  }
-
-  .toggle {
-    z-index: 10001;
-  }
-
-  .main.active .toggle {
-    color: #fff;
-    position: fixed;
-    right: 0;
-    left: initial;
-  }
 }

@@ -8,7 +8,7 @@
   --white: #fff;
   --black: #222;
   --light-color: #777;
-  --border: 0.2rem solid var(--black);
+  --border: 0.1rem solid var(--black);
 }
 
 * {
@@ -30,7 +30,7 @@ body {
 
 ::-webkit-scrollbar {
   height: 0.5rem;
-  width: 1rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,7 +38,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--yellow);
+  background-color: coral;
 }
 
 html {
@@ -123,13 +123,10 @@ section {
   color: aquamarine;
 }
 
-/*
-.logo img{
-   position: absolute;
-   margin: 0;
-   width: 20px;
-   height: 30px;
-}*/
+.logo img {
+  width: auto;
+  height: 40px;
+}
 
 .btn,
 .delete-btn {
@@ -216,7 +213,7 @@ section {
   right: 0;
   z-index: 1000;
   background-color: var(--white);
-  border-bottom: var(--border);
+  border-bottom: 2px solid #dadada;
 }
 
 .header .flex {
@@ -227,7 +224,7 @@ section {
 }
 
 .header .flex .logo {
-  font-size: 2.5rem;
+  /* font-size: 1.8rem; */
   color: var(--black);
 }
 
@@ -235,22 +232,25 @@ section {
   font-size: 2rem;
   color: var(--black);
   margin: 0 1rem;
+  transition: 0.1s linear;
 }
 
 .header .flex .navbar a:hover {
   color: var(--yellow);
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 750;
+  color: coral;
 }
 
 .header .flex .icons > * {
   margin-left: 1.5rem;
   font-size: 2.5rem;
-  color: var(--black);
+  color: rgb(124, 43, 13);
   cursor: pointer;
 }
 
 .header .flex .icons > *:hover {
-  color: var(--yellow);
+  color: black;
 }
 
 .header .flex .icons span {
@@ -494,7 +494,7 @@ section {
 }
 
 .products .box-container .box:hover .fa-eye {
-  left: 1rem;
+  /* left: 1rem; */
 }
 
 .products .box-container .box:hover .fa-shopping-cart {
@@ -629,6 +629,7 @@ section {
 }
 
 .about .row .image img {
+  height: 80%;
   width: 100%;
 }
 
@@ -1127,7 +1128,7 @@ section {
 .footer {
   margin-left: 0px;
   width: 100%;
-  background-color: black;
+  background-color: #dadada;
   color: #fff;
   height: 400px;
 }
@@ -1181,6 +1182,8 @@ section {
   border-top: 1px solid #fff;
 }
 
+/*  */
+
 .footer .grid .box .share a {
   padding-right: 35px;
 }
@@ -1196,7 +1199,8 @@ section {
 }
 
 .footer .grid .box a:hover {
-  letter-spacing: 0.3rem;
+  /* letter-spacing: 0.3rem; */
+  color: yellowgreen;
 }
 
 .footer .grid .box .dateinfo {

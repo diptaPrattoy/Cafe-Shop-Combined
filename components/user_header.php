@@ -16,7 +16,8 @@ if (isset($message)) {
     <section class="flex">
 
         <a href="home.php" class="logo">
-            <img src="../icon/logo.png" alt="Cozy Cafe">
+            <!-- <img src="../icon/cafe.png" alt=" Cozy Cafe"> -->
+            <img src="./icon/cafe.png" height="" width="" alt=" Cozy Cafe">
         </a>
 
         <nav class="navbar">

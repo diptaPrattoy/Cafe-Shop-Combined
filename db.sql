@@ -14,7 +14,7 @@ USE `cafe_db`;
 
 CREATE TABLE `all_users` (
   `id` INT(100) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
   `email` VARCHAR(150) DEFAULT NULL,
   `number` VARCHAR(20) DEFAULT NULL,
   `password` VARCHAR(100) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `all_users` (
 
 -- Sample data
 INSERT INTO `all_users`
-(`id`, `name`, `email`, `number`, `password`, `address`, `age`, `sex`, `phone`, `profile_image`, `type`) VALUES
+(`id`, `username`, `email`, `number`, `password`, `address`, `age`, `sex`, `phone`, `profile_image`, `type`) VALUES
 (1, 'admin', NULL, NULL, '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', NULL, NULL, NULL, NULL, 'default.png', 'admin'),
 (2, 'mithun', NULL, NULL, '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', NULL, NULL, NULL, NULL, 'default.png', 'admin'),
 (3, 'adminmk', NULL, NULL, '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', NULL, NULL, NULL, NULL, 'default.png', 'admin'),
@@ -99,8 +99,8 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
-(7, 6, 'mithun', '0152150903', 'mi@gmail.com', 'credit card', '12, 5, Badda, xyz, dhaka, xyz, bangladesh - 1212', 'Cortado (20 x 1) - Cappuccino (20 x 1) - Macchiato (20 x 1) - ', 60, '2022-09-18', 'pending'),
-(8, 6, 'mithun', '0152150903', 'mi@gmail.com', 'bkash', '12, 5, Badda, xyz, dhaka, xyz, bangladesh - 1212', 'Cortado (20 x 1) - ', 20, '2022-09-18', 'pending');
+(7, 11, 'dipto', '0152150903', 'di@gmail.com', 'credit card', '12, 5, Badda, xyz, dhaka, xyz, bangladesh - 1212', 'Cortado (20 x 1) - Cappuccino (20 x 1) - Macchiato (20 x 1) - ', 60, '2022-09-18', 'pending'),
+(8, 7, 'niloy', '0152150903', 'ni@gmail.com', 'bkash', '12, 5, Badda, xyz, dhaka, xyz, bangladesh - 1212', 'Cortado (20 x 1) - ', 20, '2022-09-18', 'pending');
 
 -- --------------------------------------------------------
 -- Products
