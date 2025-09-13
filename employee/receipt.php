@@ -5,10 +5,10 @@ include '../components/connect.php';
 $employee_id = $_SESSION['user_id'];
 $type = $_SESSION['type'];
 
-if (!isset($employee_id) || $type !== 'employee') {
-    header('location: ../login.php');
-    exit();
-}
+// if (!isset($employee_id) || $type !== 'employee') {
+//     header('location: ../login.php');
+//     exit();
+// }
 
 
 if (!isset($_GET['order_id'])) {

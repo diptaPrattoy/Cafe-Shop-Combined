@@ -5,10 +5,10 @@ include '../components/connect.php';
 $employee_id = $_SESSION['user_id'];
 $type = $_SESSION['type'];
 
-if (!isset($employee_id) || $type !== 'employee') {
-    header('location: ../login.php');
-    exit();
-}
+// if (!isset($employee_id) || $type !== 'employee') {
+//     header('location: ../login.php');
+//     exit();
+// }
 
 // Fetch orders for dashboard
 $orders_query = $conn->prepare("SELECT orders.*, all_users.username FROM orders 
