@@ -33,7 +33,6 @@ $monthly_sales_stmt = $conn->query("SELECT DATE_FORMAT(placed_on,'%Y-%m') as mon
                                     ORDER BY month ASC");
 $monthly_sales_data = $monthly_sales_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Top Selling Products - PHP parsing method
 
 // Orders Table
 $orders_stmt = $conn->query("SELECT * FROM orders ORDER BY placed_on DESC");
@@ -123,6 +122,7 @@ $orders = $orders_stmt->fetchAll(PDO::FETCH_ASSOC);
         <div style="max-width: 800px; margin:auto; margin-bottom:3rem;">
             <canvas id="monthlySalesChart"></canvas>
         </div>
+
 
         <!-- Orders Table -->
         <h3>Recent Orders</h3>
